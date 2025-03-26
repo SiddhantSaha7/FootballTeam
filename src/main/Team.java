@@ -1,4 +1,6 @@
-package main;
+package src.main;
+
+import main.Player;
 
 import java.util.List;
 
