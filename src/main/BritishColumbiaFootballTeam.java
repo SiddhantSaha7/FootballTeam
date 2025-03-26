@@ -1,8 +1,9 @@
-package main;
+package src.main;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import main.Player;
 
 public class BritishColumbiaFootballTeam implements Team {
   private List<Player> players;
@@ -25,41 +26,17 @@ public class BritishColumbiaFootballTeam implements Team {
 
   @Override
   public boolean addPlayer(Player p) {
-    if (players.size() >= MAX_TEAM_SIZE) {
-      System.out.println("Team is full (max size: " + MAX_TEAM_SIZE + "). Cannot add " + p.getFirstName() + " " + p.getLastName() + ".");
-      return false;
-    }
-
-    players.add(p);
-    System.out.println("Added " + p.getFirstName() + " " + p.getLastName() + " to the team.");
-    return true;
+    return false;
   }
 
   @Override
   public void removePlayer(Player p) {
-    if (players.contains(p)) {
-      players.remove(p);
-      startingLineup.remove(p);
-      if (p.getJerseyNumber() != 0) {
-        assignedJerseyNumbers.remove(p.getJerseyNumber());
-      }
-      p.setJerseyNumber(0); // Reset jersey number
-      System.out.println("Removed " + p.getFirstName() + " " + p.getLastName() + " from the team.");
-    } else {
-      System.out.println(p.getFirstName() + " " + p.getLastName() + " is not in the team.");
-    }
 
   }
 
+
   @Override
   public void assignJerseyNumber() {
-    assignedJerseyNumbers.clear(); // Reset jersey numbers
-    for (int i = 0; i < players.size(); i++) {
-      int jerseyNumber = i + 1;
-      players.get(i).setJerseyNumber(jerseyNumber);
-      assignedJerseyNumbers.add(jerseyNumber);
-    }
-    System.out.println("Jersey numbers assigned to all players.");
 
   }
 
