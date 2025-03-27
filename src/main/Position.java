@@ -1,4 +1,14 @@
-
+/** Team positions */
 public enum Position {
-    GOALIE,DEFENDER,MIDFIELDER,FORWARD
+    /** Goalkeeper */
+    GOALIE,
+
+    /** Defender */
+    DEFENDER,
+
+    /** Midfielder */
+    MIDFIELDER,
+
+    /** Forward */
+    FORWARD
 }

@@ -1,9 +1,8 @@
-
 import java.util.Date;
 
 /**
  * Concrete implementation of a soccer player.
- * Represents a player with name, birth date, position and skill level.
+ * Represents a player with name, birthdate, position and skill level.
  */
 public class SoccerPlayer implements Player {
     /**
@@ -21,7 +20,7 @@ public class SoccerPlayer implements Player {
     /**
      * The player's preferred position on the field
      */
-    private Position position;
+    private Position preferredPosition;
     /**
      * The player's skill level (higher is better)
      */
@@ -30,6 +29,10 @@ public class SoccerPlayer implements Player {
      * The player's jersey number, set to default 0 and handled once he is assigned to a team
      */
     private int jerseyNumber=0;
+    /**
+     * The player's assigned Position in the squad/team
+     */
+    private Position assignedPosition;
 
     /**
      * Creates a SoccerPlayer with basic information.
@@ -56,7 +59,7 @@ public class SoccerPlayer implements Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = DOB;
-        this.position = preferredPosition;
+        this.preferredPosition = preferredPosition;
     }
 
     /**
@@ -72,81 +75,124 @@ public class SoccerPlayer implements Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = DOB;
-        this.position = preferredPosition;
+        this.preferredPosition = preferredPosition;
         this.skillLevel = skillLevel;
     }
 
     /**
-     * Gets the player's current position.
-     *
-     * @return Position enum representing current position
+     * Gets the player's preferred position.
+     * @return the preferred position
      */
-    public Position getPosition() {
-        return position;
+    @Override
+    public Position getPreferredPosition() {
+        return preferredPosition;
     }
 
     /**
-     * Sets the player's current position.
-     *
-     * @param position Position enum to set as current
+     * Sets the player's preferred position.
+     * @param preferredPosition the position to set
      */
-    public void setPosition(Position position) {
-        this.position = position;
+    @Override
+    public void setPreferredPosition(Position preferredPosition) {
+        this.preferredPosition = preferredPosition;
     }
 
+    /**
+     * Gets the player's first name.
+     * @return the first name
+     */
     @Override
     public String getFirstName() {
         return this.firstName;
     }
 
+    /**
+     * Sets the player's first name.
+     * @param firstName the first name to set
+     */
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = firstName;}
+        this.firstName = firstName;
+    }
 
+    /**
+     * Gets the player's last name.
+     * @return the last name
+     */
     @Override
     public String getLastName() {
         return this.lastName;
     }
 
+    /**
+     * Sets the player's last name.
+     * @param lastName the last name to set
+     */
     @Override
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-
+    /**
+     * Gets the player's date of birth.
+     * @return the date of birth
+     */
     @Override
     public Date getDOB() {
         return this.dateOfBirth;
     }
 
+    /**
+     * Gets the player's assigned position.
+     * @return the assigned position
+     */
     @Override
-    public Position getPreferredPosition() {
-        return this.position;
+    public Position getAssignedPosition() {
+        return this.assignedPosition;
     }
 
+    /**
+     * Sets the player's assigned position.
+     * @param assignedPosition the position to assign
+     */
     @Override
-    public void setPreferredPosition(Position position) {
-        this.position = position;
+    public void setAssignedPosition(Position assignedPosition) {
+        this.assignedPosition = assignedPosition;
     }
 
+    /**
+     * Gets the player's skill level.
+     * @return the skill level
+     */
     @Override
     public int getSkillLevel() {
         return this.skillLevel;
     }
 
+    /**
+     * Sets the player's skill level.
+     * @param skillLevel the skill level to set
+     */
     @Override
     public void setSkillLevel(int skillLevel) {
         this.skillLevel = skillLevel;
     }
 
+    /**
+     * Gets the player's jersey number.
+     * @return the jersey number
+     */
     @Override
     public int getJerseyNumber() {
         return this.jerseyNumber;
     }
 
+    /**
+     * Sets the player's jersey number.
+     * @param jerseyNumber the jersey number to set
+     */
     @Override
     public void setJerseyNumber(int jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
     }
-
 }
