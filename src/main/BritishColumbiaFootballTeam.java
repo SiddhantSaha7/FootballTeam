@@ -17,7 +17,10 @@ public class BritishColumbiaFootballTeam implements Team {
     this.assignedJerseyNumbers = new HashSet<>();
   }
 
-  public BritishColumbiaFootballTeam(List<Player> players) {
+  public BritishColumbiaFootballTeam(List<Player> players) throws IllegalStateException{
+    if (players.size() >20 || players.size() <10){
+      throw new IllegalStateException("Team size should be between 10-20 players!");
+    }
     this.players = new ArrayList<>(players);
     this.startingLineup = new ArrayList<>();
     this.assignedJerseyNumbers = new HashSet<>();
@@ -67,7 +70,6 @@ public class BritishColumbiaFootballTeam implements Team {
         return -1*(Integer.valueOf(p1.getSkillLevel()).compareTo(Integer.valueOf(p2.getSkillLevel())));
       }
     });
-//    Collections.sort(copyList, Collections.reverseOrder());
     Iterator<Player> it = copyList.iterator();
     int goalieCount = 1;
     int defenderCount = 2;
@@ -97,7 +99,7 @@ public class BritishColumbiaFootballTeam implements Team {
       }
     }
     it = copyList.iterator();
-    while (it.hasNext() && this.startingLineup.size() != 7){
+    while (it.hasNext() && this.startingLineup.size() != STARTING_LINEUP_SIZE){
       Player currPlayer = it.next();
       if (this.startingLineup.contains(currPlayer)){
         continue;
