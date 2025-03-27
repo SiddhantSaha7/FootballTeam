@@ -1,5 +1,3 @@
-package main;
-
 import java.util.Date;
 
 /**
@@ -8,16 +6,24 @@ import java.util.Date;
  */
 public interface Player {
     /**
-     * Gets the full name of the player.
-     * @return String containing the player's full name
+     * Gets the first name of the player.
+     * @return String containing the player's first name
      */
-    public String getName();
+    public String getFirstName();
+    /**
+     * Sets the player's first  name.
+     * @param firstName The player's first name*/
+    public void setFirstName(String firstName);
+    /**
+     * Gets the first name of the player.
+     * @return String containing the player's first name
+     */
+    public String getLastName();
     /**
      * Sets the player's first and last name.
-     * @param firstName The player's first name
      * @param lastName The player's last name
      */
-    public void setName(String firstName,String lastName);
+    public void setLastName(String lastName);
     /**
      * Gets the player's date of birth.
      * @return Date object representing the player's birth date
@@ -43,4 +49,8 @@ public interface Player {
      * @param skillLevel int representing skill level (higher is better)
      */
     public void setSkillLevel(int skillLevel);
+
+    public int getJerseyNumber();
+
+    public void setJerseyNumber(int jerseyNumber);
 }

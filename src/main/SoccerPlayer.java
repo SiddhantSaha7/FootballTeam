@@ -1,4 +1,3 @@
-package main;
 
 import java.util.Date;
 
@@ -6,57 +5,72 @@ import java.util.Date;
  * Concrete implementation of a soccer player.
  * Represents a player with name, birth date, position and skill level.
  */
-public class SoccerPlayer implements Player{
-  /** The player's first name */
-  private String FirstName;
-  /** The player's last name */
-  private String LastName;
-  /** The player's date of birth */
-  private Date dateOfBirth;
-  /** The player's preferred position on the field */
-  private Position position;
-  /** The player's skill level (higher is better) */
-  private int skillLevel;
-  /** The player's jersey number */
-  private final int jerseyNumber = 0;
+public class SoccerPlayer implements Player {
+    /**
+     * The player's first name
+     */
+    private String firstName;
+    /**
+     * The player's last name
+     */
+    private String lastName;
+    /**
+     * The player's date of birth
+     */
+    private Date dateOfBirth;
+    /**
+     * The player's preferred position on the field
+     */
+    private Position position;
+    /**
+     * The player's skill level (higher is better)
+     */
+    private int skillLevel;
+    /**
+     * The player's jersey number, set to default 0 and handled once he is assigned to a team
+     */
+    private int jerseyNumber=0;
 
     /**
      * Creates a SoccerPlayer with basic information.
+     *
      * @param firstName The player's first name
-     * @param lastName The player's last name
-     * @param DOB The player's date of birth
+     * @param lastName  The player's last name
+     * @param DOB       The player's date of birth
      */
     public SoccerPlayer(String firstName, String lastName, Date DOB) {
-        this.FirstName = firstName;
-        this.LastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = DOB;
     }
 
     /**
      * Creates a SoccerPlayer with basic information and preferred position.
-     * @param firstName The player's first name
-     * @param lastName The player's last name
-     * @param DOB The player's date of birth
+     *
+     * @param firstName         The player's first name
+     * @param lastName          The player's last name
+     * @param DOB               The player's date of birth
      * @param preferredPosition The player's preferred position
      */
     public SoccerPlayer(String firstName, String lastName, Date DOB, Position preferredPosition) {
-        this.FirstName = firstName;
-        this.LastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = DOB;
         this.position = preferredPosition;
     }
 
     /**
      * Creates a SoccerPlayer with complete information.
-     * @param firstName The player's first name
-     * @param lastName The player's last name
-     * @param DOB The player's date of birth
+     *
+     * @param firstName         The player's first name
+     * @param lastName          The player's last name
+     * @param DOB               The player's date of birth
      * @param preferredPosition The player's preferred position
-     * @param skillLevel The player's skill level (higher is better)
+     * @param skillLevel        The player's skill level (higher is better)
      */
     public SoccerPlayer(String firstName, String lastName, Date DOB, Position preferredPosition, int skillLevel) {
-        this.FirstName = firstName;
-        this.LastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = DOB;
         this.position = preferredPosition;
         this.skillLevel = skillLevel;
@@ -64,6 +78,7 @@ public class SoccerPlayer implements Player{
 
     /**
      * Gets the player's current position.
+     *
      * @return Position enum representing current position
      */
     public Position getPosition() {
@@ -72,6 +87,7 @@ public class SoccerPlayer implements Player{
 
     /**
      * Sets the player's current position.
+     *
      * @param position Position enum to set as current
      */
     public void setPosition(Position position) {
@@ -79,15 +95,24 @@ public class SoccerPlayer implements Player{
     }
 
     @Override
-    public String getName() {
-        return String.format("%s %s", FirstName, LastName);
+    public String getFirstName() {
+        return this.firstName;
     }
 
     @Override
-    public void setName(String firstName, String lastName) {
-        this.FirstName = firstName;
-        this.LastName = lastName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;}
+
+    @Override
+    public String getLastName() {
+        return this.lastName;
     }
+
+    @Override
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 
     @Override
     public Date getDOB() {
@@ -113,4 +138,15 @@ public class SoccerPlayer implements Player{
     public void setSkillLevel(int skillLevel) {
         this.skillLevel = skillLevel;
     }
+
+    @Override
+    public int getJerseyNumber() {
+        return this.jerseyNumber;
+    }
+
+    @Override
+    public void setJerseyNumber(int jerseyNumber) {
+        this.jerseyNumber = jerseyNumber;
+    }
+
 }
