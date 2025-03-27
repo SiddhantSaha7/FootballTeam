@@ -6,7 +6,7 @@ import java.util.Date;
  * Concrete implementation of a soccer player.
  * Represents a player with name, birth date, position and skill level.
  */
-public class SoccerPlayer implements Player {
+public class SoccerPlayer implements Player{
   /** The player's first name */
   private String FirstName;
   /** The player's last name */
