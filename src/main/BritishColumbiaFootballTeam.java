@@ -28,36 +28,57 @@ public class BritishColumbiaFootballTeam implements Team {
   }
 
   /**
-   * Creates team with players
+   * Creates team with players, and assigns them the jersey numbers
+   * This does not create the starting lineup, only the team
    * @param players List of players
-   * @throws IllegalStateException if size invalid
+   * @throws IllegalArgumentException if size invalid (>20 or <10)
    */
-  public BritishColumbiaFootballTeam(List<Player> players) throws IllegalStateException {
+  public BritishColumbiaFootballTeam(List<Player> players) throws IllegalArgumentException {
     if (players.size() > 20 || players.size() < 10) {
-      throw new IllegalStateException("Team size should be between 10-20 players!");
+      throw new IllegalArgumentException("Team size should be between 10-20 players!");
     }
     this.players = new ArrayList<>(players);
     this.startingLineup = new ArrayList<>();
     this.assignedJerseyNumbers = new HashSet<>();
+    // assign jersey numbers to all the players
+    this.assignJerseyNumber();
   }
 
-  /** Adds player */
+  /** Adds player to the team
+   * This just adds the player to the team, not to the starting lineup
+   * Assign jersey number to the players again
+   * @param p the player to be added
+   * @throws IllegalStateException if team already has 20 players
+   * */
   @Override
   public void addPlayer(Player p) throws IllegalStateException {
     if (this.players.size() == MAX_TEAM_SIZE) {
       throw new IllegalStateException("You cannot have more than 20 members in a team!");
     } else {
       this.players.add(p);
+      this.assignJerseyNumber();
     }
   }
 
-  /** Removes player */
+  /** Removes player from the team
+   * This removes the player from the team and removes his jersey number as well
+   * If he is a part of the starting lineup, then the player is removed from there as well
+   * @param p the player to be removed
+   * @throws IllegalStateException if team has only 10 players
+   * */
   @Override
   public void removePlayer(Player p) throws IllegalStateException {
     if (this.players.size() == MIN_TEAM_SIZE) {
       throw new IllegalStateException("You cannot have less than 10 members in a team!");
     }
     this.players.remove(p);
+    // Remove the jersey number of the player
+    this.assignedJerseyNumbers.remove(p.getJerseyNumber());
+    // Remove from starting lineup if player is a part of it and then recreate starting lineup
+    if (this.startingLineup.contains(this.players)){
+      this.startingLineup.remove(this.players);
+      this.createStartingLineup();
+    }
   }
 
   /** Assigns jersey numbers */
@@ -72,7 +93,7 @@ public class BritishColumbiaFootballTeam implements Team {
       }
       int jerseyNum = (int) ((Math.random() * 20) + 1);
       if (!assignedJerseyNumbers.contains(jerseyNum)) {
-        this.players.get(i).setJerseyNumber(jerseyNum);
+        this.players.get(i).setJerseyNumber(jerseyNum, this);
         assignedJerseyNumbers.add(jerseyNum);
         i++;
       }

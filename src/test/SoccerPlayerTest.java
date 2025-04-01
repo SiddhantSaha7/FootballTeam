@@ -1,63 +1,105 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.*;
 
 public class SoccerPlayerTest {
+    private SoccerPlayer player;
+    private LocalDate testDate;
+    private Position testPosition;
 
     @Before
     public void setUp() throws Exception {
+        testDate = LocalDate.of(2017, 1, 1);
+        testPosition = Position.FORWARD;
+        player = new SoccerPlayer("John", "Doe", testDate, testPosition, 5);
     }
 
     @Test
-    public void getPreferredPosition() {
+    public void testBasicConstructor() {
+        SoccerPlayer basicPlayer = new SoccerPlayer("Jane", "Smith", testDate);
+        assertEquals("Jane", basicPlayer.getFirstName());
+        assertEquals("Smith", basicPlayer.getLastName());
+        assertEquals(testDate, basicPlayer.getDOB());
+        assertNull(basicPlayer.getPreferredPosition());
+        assertEquals(0, basicPlayer.getSkillLevel());
     }
 
     @Test
-    public void setPreferredPosition() {
+    public void testPositionConstructor() {
+        SoccerPlayer posPlayer = new SoccerPlayer("Bob", "Wilson", testDate, testPosition);
+        assertEquals("Bob", posPlayer.getFirstName());
+        assertEquals("Wilson", posPlayer.getLastName());
+        assertEquals(testDate, posPlayer.getDOB());
+        assertEquals(testPosition, posPlayer.getPreferredPosition());
+        assertEquals(0, posPlayer.getSkillLevel());
     }
 
     @Test
-    public void getFirstName() {
+    public void testFullConstructor() {
+        assertEquals("John", player.getFirstName());
+        assertEquals("Doe", player.getLastName());
+        assertEquals(testDate, player.getDOB());
+        assertEquals(testPosition, player.getPreferredPosition());
+        assertEquals(5, player.getSkillLevel());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorWithWrongSkillLevel(){
+        Player wrongSkillPlayer = new SoccerPlayer("John", "Doe", testDate, testPosition, 51);
     }
 
     @Test
-    public void setFirstName() {
+    public void testGetPreferredPosition() {
+        assertEquals(testPosition, player.getPreferredPosition());
     }
 
     @Test
-    public void getLastName() {
+    public void testSetPreferredPosition() {
+        Position newPosition = Position.MIDFIELDER;
+        player.setPreferredPosition(newPosition);
+        assertEquals(newPosition, player.getPreferredPosition());
     }
 
     @Test
-    public void setLastName() {
+    public void testGetAndSetFirstName() {
+        player.setFirstName("Mike");
+        assertEquals("Mike", player.getFirstName());
     }
 
     @Test
-    public void getDOB() {
+    public void testGetAndSetLastName() {
+        player.setLastName("Johnson");
+        assertEquals("Johnson", player.getLastName());
     }
 
     @Test
-    public void getAssignedPosition() {
+    public void testGetDOB() {
+        assertEquals(testDate, player.getDOB());
     }
 
     @Test
-    public void setAssignedPosition() {
+    public void testGetAndSetSkillLevel() {
+        player.setSkillLevel(5);
+        assertEquals(5, player.getSkillLevel());
     }
 
-    @Test
-    public void getSkillLevel() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testExceptionCaseNullNames() {
+        SoccerPlayer nullNamePlayer = new SoccerPlayer(null, null, testDate);
+
     }
 
-    @Test
-    public void setSkillLevel() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testExceptionCaseNegativeSkillLevel() {
+        player.setSkillLevel(-5);
+        assertEquals(-5, player.getSkillLevel()); // Note: You might want to add validation
     }
 
-    @Test
-    public void getJerseyNumber() {
-    }
-
-    @Test
-    public void setJerseyNumber() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testExceptionOlderPlayer() {
+        SoccerPlayer nullDatePlayer = new SoccerPlayer("Test", "Player", LocalDate.of(2014, 4, 4));
     }
 }
