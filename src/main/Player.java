@@ -70,7 +70,7 @@ import java.time.LocalDate;
      * Sets the player's jersey number.
      * @param jerseyNumber int representing jersey Number, its value will lie between 1-20
      */
-     void setJerseyNumber(int jerseyNumber);
+     void setJerseyNumber(int jerseyNumber, Team team);
 
     
 }

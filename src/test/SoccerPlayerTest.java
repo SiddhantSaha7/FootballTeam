@@ -86,12 +86,6 @@ public class SoccerPlayerTest {
         assertEquals(5, player.getSkillLevel());
     }
 
-//    @Test
-//    public void testGetAndSetJerseyNumber() {
-//        player.setJerseyNumber(10);
-//        assertEquals(10, player.getJerseyNumber());
-//    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testExceptionCaseNullNames() {
         SoccerPlayer nullNamePlayer = new SoccerPlayer(null, null, testDate);
@@ -103,12 +97,6 @@ public class SoccerPlayerTest {
         player.setSkillLevel(-5);
         assertEquals(-5, player.getSkillLevel()); // Note: You might want to add validation
     }
-
-//    @Test
-//    public void testEdgeCaseNegativeJerseyNumber() {
-//        player.setJerseyNumber(-1);
-//        assertEquals(-1, player.getJerseyNumber()); // Note: You might want to add validation
-//    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testExceptionOlderPlayer() {

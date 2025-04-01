@@ -59,11 +59,11 @@ public class Driver {
 
         // Testing creation of team
         BritishColumbiaFootballTeam team = new BritishColumbiaFootballTeam(a);
-        // Testing Jersey Number Assignment
         team.assignJerseyNumber();
         // Testing getting all the players in the team
         System.out.println(team.getAllPlayersSorted());
         // Testing creation of the starting lineup
+
         team.createStartingLineup();
         System.out.println(team.getStartingLineup());
 
@@ -73,11 +73,8 @@ public class Driver {
         team.removePlayer(p8);
         team.removePlayer(p16);
         Player p21 = new SoccerPlayer("Alexander", "Skaarsgard", LocalDate.of(2016, 9, 3), Position.DEFENDER, 1);
-
         team.addPlayer(p21);
         System.out.println(team.getAllPlayersSorted());
-
-        team.createStartingLineup();
         System.out.println(team.getStartingLineup());
     }
 }

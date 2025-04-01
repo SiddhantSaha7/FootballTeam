@@ -228,13 +228,19 @@ public class SoccerPlayer implements Player {
      * @param jerseyNumber the jersey number to set
      */
     @Override
-    public void setJerseyNumber(int jerseyNumber) throws IllegalArgumentException{
-        if (jerseyNumber < 1 || jerseyNumber > 20) {
-            throw new IllegalArgumentException("Jersey Number is wrong!");
+    public void setJerseyNumber(int jerseyNumber, Team team) throws IllegalArgumentException{
+        if (team instanceof Team) {
+            this.jerseyNumber = jerseyNumber;
+        } else {
+            throw new IllegalArgumentException("Jersey number can only be assigned by a team!");
         }
-        this.jerseyNumber = jerseyNumber;
     }
 
+    /** Method to check if a player is >10 years old
+     *
+     * @param dateOfBirth the date of birth of the player
+     * @return true if he is older than 10 else false
+     */
     private boolean isPlayerTooOld(LocalDate dateOfBirth){
         return dateOfBirth.isBefore(LocalDate.now().minus(10, ChronoUnit.YEARS));
     }
