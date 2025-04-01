@@ -75,8 +75,8 @@ public class BritishColumbiaFootballTeam implements Team {
     // Remove the jersey number of the player
     this.assignedJerseyNumbers.remove(p.getJerseyNumber());
     // Remove from starting lineup if player is a part of it and then recreate starting lineup
-    if (this.startingLineup.contains(this.players)){
-      this.startingLineup.remove(this.players);
+    if (this.startingLineup.contains(p)){
+      this.startingLineup.remove(p);
       this.createStartingLineup();
     }
   }
