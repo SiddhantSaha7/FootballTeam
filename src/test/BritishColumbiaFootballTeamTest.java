@@ -26,17 +26,23 @@ public class BritishColumbiaFootballTeamTest {
         team = new BritishColumbiaFootballTeam(initialPlayers);
     }
 
+    /**
+     * Tests adding a player to a team that is not full.
+     * Verifies the team size increases to 20.
+     */
     @Test
     public void addPlayer() {
-        // Test adding a player to a non-full team
-        Player newPlayer = new SoccerPlayer("New", "Player", LocalDate.of(2016, 2,2));
+        Player newPlayer = new SoccerPlayer("New", "Player", LocalDate.of(2016, 2, 2));
         team.addPlayer(newPlayer);
         assertEquals(20, team.getAllPlayersSorted().split("\n").length);
     }
 
+    /**
+     * Tests adding a player to a full team (20 players).
+     * Expects an IllegalStateException to be thrown.
+     */
     @Test(expected = IllegalStateException.class)
     public void addPlayerToFullTeam() {
-        // Test adding to a full team (20 players)
         BritishColumbiaFootballTeam fullTeam = new BritishColumbiaFootballTeam();
         for (int i = 0; i < 20; i++) {
             fullTeam.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
@@ -44,15 +50,22 @@ public class BritishColumbiaFootballTeamTest {
         fullTeam.addPlayer(new SoccerPlayer("Extra", "Player", LocalDate.of(2016, 1, 1)));
     }
 
+    /**
+     * Tests removing a player from a team with more than the minimum size.
+     * Verifies the team size decreases to 18 and the player is no longer listed.
+     */
     @Test
     public void removePlayer() {
-        // Test removing a player from a team with > MIN_TEAM_SIZE
         Player toRemove = initialPlayers.get(0);
         team.removePlayer(toRemove);
         assertEquals(18, team.getAllPlayersSorted().split("\n").length);
         assertFalse(team.getAllPlayersSorted().contains("Last0"));
     }
 
+    /**
+     * Tests removing a player from a team with the minimum size (10).
+     * Expects an IllegalStateException to be thrown.
+     */
     @Test(expected = IllegalStateException.class)
     public void removePlayerFromMinSizeTeam() {
         for (int i = 0; i < 9; i++) {
@@ -61,6 +74,10 @@ public class BritishColumbiaFootballTeamTest {
         team.removePlayer(initialPlayers.get(0));  // Should throw exception
     }
 
+    /**
+     * Tests assigning jersey numbers to all players in a full team.
+     * Verifies all 20 players get unique numbers between 1 and 20.
+     */
     @Test
     public void assignJerseyNumber() {
         BritishColumbiaFootballTeam fullTeam = new BritishColumbiaFootballTeam();
@@ -70,10 +87,8 @@ public class BritishColumbiaFootballTeamTest {
         String players = fullTeam.getAllPlayersSorted();
         String[] playerLines = players.split("\n");
 
-        // Check all players got numbers
         assertEquals(20, playerLines.length);
 
-        // Check uniqueness and range
         List<Integer> numbers = new ArrayList<>();
         for (String line : playerLines) {
             int jersey = Integer.parseInt(line.split("Jersey Number: ")[1]);
@@ -83,9 +98,12 @@ public class BritishColumbiaFootballTeamTest {
         }
     }
 
+    /**
+     * Tests creating a starting lineup with varied skills and positions.
+     * Verifies the lineup has 7 players with correct position counts.
+     */
     @Test
     public void createStartingLineup() {
-        // Test lineup creation with varied skills and positions
         team = new BritishColumbiaFootballTeam();
         team.addPlayer(new SoccerPlayer("Goalie", "One", LocalDate.of(2016, 1, 1), Position.GOALIE, 3));
         team.addPlayer(new SoccerPlayer("Def", "One", LocalDate.of(2016, 1, 1), Position.DEFENDER, 2));
@@ -109,12 +127,15 @@ public class BritishColumbiaFootballTeamTest {
         assertTrue(lineup.contains("Position: FORWARD"));
     }
 
+    /**
+     * Tests creating a starting lineup when players prefer only one position.
+     * Verifies the lineup still has 7 players with all required positions filled.
+     */
     @Test
     public void createStartingLineupWithInsufficientPreferredPositions() {
-        // Test lineup when not enough players prefer each position
         team = new BritishColumbiaFootballTeam();
         for (int i = 0; i < 10; i++) {
-            team.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.MIDFIELDER, (int) (Math.random()*5)+1));
+            team.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.MIDFIELDER, (int) (Math.random() * 5) + 1));
         }
         team.createStartingLineup();
         String lineup = team.getStartingLineup();
@@ -127,24 +148,30 @@ public class BritishColumbiaFootballTeamTest {
         assertTrue(lineup.contains("Position: FORWARD"));
     }
 
+    /**
+     * Tests retrieving all players sorted by last name.
+     * Verifies the list has 19 players and is in alphabetical order.
+     */
     @Test
     public void getAllPlayersSorted() {
-        // Test sorting by last name
         team.assignJerseyNumber();
         String players = team.getAllPlayersSorted();
         String[] lines = players.split("\n");
 
         assertEquals(19, lines.length);
         for (int i = 1; i < lines.length; i++) {
-            String prevLastName = lines[i-1].split(", ")[0].split("Name: ")[1];
+            String prevLastName = lines[i - 1].split(", ")[0].split("Name: ")[1];
             String currLastName = lines[i].split(", ")[0].split("Name: ")[1];
             assertTrue(prevLastName.compareToIgnoreCase(currLastName) <= 0);
         }
     }
 
+    /**
+     * Tests retrieving the starting lineup sorted by position and last name.
+     * Verifies the lineup has 7 players and follows the correct sorting order.
+     */
     @Test
     public void getStartingLineup() {
-        // Test lineup sorting by position then last name
         team = new BritishColumbiaFootballTeam();
         team.addPlayer(new SoccerPlayer("Zack", "Apple", LocalDate.of(2016, 1, 1), Position.GOALIE, 5));
         team.addPlayer(new SoccerPlayer("Bob", "Zebra", LocalDate.of(2016, 1, 1), Position.DEFENDER, 2));
@@ -172,6 +199,10 @@ public class BritishColumbiaFootballTeamTest {
         assertTrue(lines[6].contains("Position: FORWARD"));  // Fox
     }
 
+    /**
+     * Tests constructing a team with fewer than 10 players.
+     * Expects an IllegalArgumentException to be thrown.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithTooFewPlayers() {
         List<Player> tooFew = new ArrayList<>();
@@ -181,6 +212,10 @@ public class BritishColumbiaFootballTeamTest {
         new BritishColumbiaFootballTeam(tooFew);
     }
 
+    /**
+     * Tests constructing a team with more than 20 players.
+     * Expects an IllegalArgumentException to be thrown.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithTooManyPlayers() {
         List<Player> tooMany = new ArrayList<>();
@@ -190,7 +225,12 @@ public class BritishColumbiaFootballTeamTest {
         new BritishColumbiaFootballTeam(tooMany);
     }
 
-    // Helper method to count occurrences in a string
+    /**
+     * Helper method to count occurrences of a substring in a text.
+     * @param text The text to search in
+     * @param substring The substring to count
+     * @return The number of occurrences
+     */
     private int countOccurrences(String text, String substring) {
         int count = 0;
         int index = 0;

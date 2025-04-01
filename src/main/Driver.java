@@ -59,7 +59,6 @@ public class Driver {
 
         // Testing creation of team
         BritishColumbiaFootballTeam team = new BritishColumbiaFootballTeam(a);
-        team.assignJerseyNumber();
         // Testing getting all the players in the team
         System.out.println(team.getAllPlayersSorted());
         // Testing creation of the starting lineup
