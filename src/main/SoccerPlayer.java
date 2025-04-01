@@ -1,4 +1,8 @@
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Concrete implementation of a soccer player.
@@ -16,7 +20,7 @@ public class SoccerPlayer implements Player {
     /**
      * The player's date of birth
      */
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     /**
      * The player's preferred position on the field
      */
@@ -41,7 +45,13 @@ public class SoccerPlayer implements Player {
      * @param lastName  The player's last name
      * @param DOB       The player's date of birth
      */
-    public SoccerPlayer(String firstName, String lastName, Date DOB) {
+    public SoccerPlayer(String firstName, String lastName, LocalDate DOB) throws IllegalArgumentException{
+        if (firstName == null || lastName == null || firstName.length()==0 || lastName.length()==0) {
+            throw new IllegalArgumentException("The firstname and lastname should not be empty or null");
+        }
+        else if (isPlayerTooOld(DOB)){
+            throw new IllegalArgumentException("Player is too old!");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = DOB;
@@ -55,7 +65,13 @@ public class SoccerPlayer implements Player {
      * @param DOB               The player's date of birth
      * @param preferredPosition The player's preferred position
      */
-    public SoccerPlayer(String firstName, String lastName, Date DOB, Position preferredPosition) {
+    public SoccerPlayer(String firstName, String lastName, LocalDate DOB, Position preferredPosition) throws IllegalArgumentException{
+        if (firstName == null || lastName == null || firstName.length()==0 || lastName.length()==0) {
+            throw new IllegalArgumentException("The firstname and lastname should not be empty or null");
+        }
+        else if (isPlayerTooOld(DOB)){
+            throw new IllegalArgumentException("Player is too old!");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = DOB;
@@ -71,7 +87,18 @@ public class SoccerPlayer implements Player {
      * @param preferredPosition The player's preferred position
      * @param skillLevel        The player's skill level (higher is better)
      */
-    public SoccerPlayer(String firstName, String lastName, Date DOB, Position preferredPosition, int skillLevel) {
+    public SoccerPlayer(String firstName, String lastName, LocalDate DOB, Position preferredPosition, int skillLevel) throws IllegalArgumentException{
+        if (firstName == null || lastName == null || firstName.length()==0 || lastName.length()==0) {
+            throw new IllegalArgumentException("The firstname and lastname should not be empty or null");
+        }
+        else if (isPlayerTooOld(DOB)){
+            throw new IllegalArgumentException("Player is too old!");
+        }
+        else if (skillLevel > 5 || skillLevel < 1){
+            throw new IllegalArgumentException("Skill level must be between 1-5!");
+        }
+
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = DOB;
@@ -111,7 +138,10 @@ public class SoccerPlayer implements Player {
      * @param firstName the first name to set
      */
     @Override
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws IllegalArgumentException{
+        if (firstName == null || firstName.length()==0){
+            throw new IllegalArgumentException("Firstname cannot be null or empty!");
+        }
         this.firstName = firstName;
     }
 
@@ -130,6 +160,9 @@ public class SoccerPlayer implements Player {
      */
     @Override
     public void setLastName(String lastName) {
+        if (lastName == null || lastName.length()==0){
+            throw new IllegalArgumentException("Firstname cannot be null or empty!");
+        }
         this.lastName = lastName;
     }
 
@@ -138,7 +171,7 @@ public class SoccerPlayer implements Player {
      * @return the date of birth
      */
     @Override
-    public Date getDOB() {
+    public LocalDate getDOB() {
         return this.dateOfBirth;
     }
 
@@ -175,6 +208,9 @@ public class SoccerPlayer implements Player {
      */
     @Override
     public void setSkillLevel(int skillLevel) {
+        if (skillLevel > 5 || skillLevel < 1){
+            throw new IllegalArgumentException("Skill level must be between 1-5!");
+        }
         this.skillLevel = skillLevel;
     }
 
@@ -192,7 +228,14 @@ public class SoccerPlayer implements Player {
      * @param jerseyNumber the jersey number to set
      */
     @Override
-    public void setJerseyNumber(int jerseyNumber) {
+    public void setJerseyNumber(int jerseyNumber) throws IllegalArgumentException{
+        if (jerseyNumber < 1 || jerseyNumber > 20) {
+            throw new IllegalArgumentException("Jersey Number is wrong!");
+        }
         this.jerseyNumber = jerseyNumber;
+    }
+
+    private boolean isPlayerTooOld(LocalDate dateOfBirth){
+        return dateOfBirth.isBefore(LocalDate.now().minus(10, ChronoUnit.YEARS));
     }
 }

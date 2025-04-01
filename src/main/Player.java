@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Interface representing a Player in a sports team.
@@ -28,7 +28,7 @@ import java.util.Date;
      * Gets the player's date of birth.
      * @return Date object representing the player's birth date
      */
-     Date getDOB();
+     LocalDate getDOB();
     /**
      * Gets the player's preferred playing position.
      * @return Position enum representing the preferred position

@@ -1,5 +1,7 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+
 
 /**
  * Demonstrates usage of soccer team classes.
@@ -11,26 +13,27 @@ public class Driver {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        Player p1 = new SoccerPlayer("Adil", "Jain", new Date(2010, 10, 12), Position.GOALIE, 3);
-        Player p2 = new SoccerPlayer("Liam", "Parker", new Date(2008, 5, 23), Position.DEFENDER, 3);
-        Player p3 = new SoccerPlayer("Emma", "Soto", new Date(2011, 2, 17), Position.MIDFIELDER, 4);
-        Player p4 = new SoccerPlayer("Noah", "Kumar", new Date(2009, 8, 30), Position.FORWARD, 2);
-        Player p5 = new SoccerPlayer("Ava", "Chen", new Date(2012, 12, 1), Position.DEFENDER, 5);
-        Player p6 = new SoccerPlayer("Ethan", "Rossi", new Date(2007, 3, 15), Position.MIDFIELDER, 1);
-        Player p7 = new SoccerPlayer("Sophia", "Ali", new Date(2010, 7, 9), Position.FORWARD, 3);
-        Player p8 = new SoccerPlayer("Mason", "Wong", new Date(2013, 1, 27), Position.GOALIE, 4);
-        Player p9 = new SoccerPlayer("Isabella", "Diaz", new Date(2008, 11, 4), Position.MIDFIELDER, 2);
-        Player p10 = new SoccerPlayer("Lucas", "Kim", new Date(2011, 6, 19), Position.DEFENDER, 5);
-        Player p11 = new SoccerPlayer("Mia", "Patel", new Date(2009, 9, 8), Position.FORWARD, 3);
-        Player p12 = new SoccerPlayer("James", "Lopez", new Date(2012, 4, 25), Position.DEFENDER, 1);
-        Player p13 = new SoccerPlayer("Olivia", "Nguyen", new Date(2007, 10, 31), Position.MIDFIELDER, 4);
-        Player p14 = new SoccerPlayer("William", "Singh", new Date(2010, 3, 14), Position.DEFENDER, 2);
-        Player p15 = new SoccerPlayer("Amelia", "Cruz", new Date(2013, 8, 7), Position.FORWARD, 5);
-        Player p16 = new SoccerPlayer("Benjamin", "Ito", new Date(2008, 12, 22), Position.GOALIE, 3);
-        Player p17 = new SoccerPlayer("Charlotte", "Reyes", new Date(2011, 5, 16), Position.MIDFIELDER, 1);
-        Player p18 = new SoccerPlayer("Elijah", "Gupta", new Date(2009, 2, 28), Position.DEFENDER, 4);
-        Player p19 = new SoccerPlayer("Harper", "Silva", new Date(2012, 7, 11), Position.FORWARD, 2);
-        Player p20 = new SoccerPlayer("Alexander", "Yama", new Date(2007, 9, 3), Position.MIDFIELDER, 5);
+
+        Player p1 = new SoccerPlayer("Adil", "Jain", LocalDate.of(2016, 10, 12), Position.GOALIE, 3);
+        Player p2 = new SoccerPlayer("Liam", "Parker", LocalDate.of(2016, 5, 23), Position.DEFENDER, 3);
+        Player p3 = new SoccerPlayer("Emma", "Soto", LocalDate.of(2017, 2, 17), Position.MIDFIELDER, 4);
+        Player p4 = new SoccerPlayer("Noah", "Kumar", LocalDate.of(2016, 8, 30), Position.FORWARD, 2);
+        Player p5 = new SoccerPlayer("Ava", "Chen", LocalDate.of(2018, 12, 1), Position.DEFENDER, 5);
+        Player p6 = new SoccerPlayer("Ethan", "Rossi", LocalDate.of(2016, 3, 15), Position.MIDFIELDER, 1);
+        Player p7 = new SoccerPlayer("Sophia", "Ali", LocalDate.of(2017, 7, 9), Position.FORWARD, 3);
+        Player p8 = new SoccerPlayer("Mason", "Wong", LocalDate.of(2019, 1, 27), Position.GOALIE, 4);
+        Player p9 = new SoccerPlayer("Isabella", "Diaz", LocalDate.of(2016, 11, 4), Position.MIDFIELDER, 2);
+        Player p10 = new SoccerPlayer("Lucas", "Kim", LocalDate.of(2018, 6, 19), Position.DEFENDER, 5);
+        Player p11 = new SoccerPlayer("Mia", "Patel", LocalDate.of(2016, 9, 8), Position.FORWARD, 3);
+        Player p12 = new SoccerPlayer("James", "Lopez", LocalDate.of(2019, 4, 25), Position.DEFENDER, 1);
+        Player p13 = new SoccerPlayer("Olivia", "Nguyen", LocalDate.of(2016, 10, 31), Position.MIDFIELDER, 4);
+        Player p14 = new SoccerPlayer("William", "Singh", LocalDate.of(2017, 3, 14), Position.DEFENDER, 2);
+        Player p15 = new SoccerPlayer("Amelia", "Cruz", LocalDate.of(2019, 8, 7), Position.FORWARD, 5);
+        Player p16 = new SoccerPlayer("Benjamin", "Ito", LocalDate.of(2016, 12, 22), Position.GOALIE, 3);
+        Player p17 = new SoccerPlayer("Charlotte", "Reyes", LocalDate.of(2018, 5, 16), Position.MIDFIELDER, 1);
+        Player p18 = new SoccerPlayer("Elijah", "Gupta", LocalDate.of(2017, 2, 28), Position.DEFENDER, 4);
+        Player p19 = new SoccerPlayer("Harper", "Silva", LocalDate.of(2019, 7, 11), Position.FORWARD, 2);
+        Player p20 = new SoccerPlayer("Alexander", "Yama", LocalDate.of(2017, 9, 3), Position.MIDFIELDER, 5);
 
         ArrayList<Player> a = new ArrayList<>();
         a.add(p1);
@@ -69,7 +72,8 @@ public class Driver {
         team.removePlayer(p1);
         team.removePlayer(p8);
         team.removePlayer(p16);
-        Player p21 = new SoccerPlayer("Alexander", "Skaarsgard", new Date(2009, 9, 3), Position.DEFENDER, 1);
+        Player p21 = new SoccerPlayer("Alexander", "Skaarsgard", LocalDate.of(2016, 9, 3), Position.DEFENDER, 1);
+
         team.addPlayer(p21);
         System.out.println(team.getAllPlayersSorted());
 
