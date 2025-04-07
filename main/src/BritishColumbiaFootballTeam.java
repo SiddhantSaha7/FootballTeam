@@ -195,12 +195,13 @@ public class BritishColumbiaFootballTeam implements Team {
       }
     });
     Iterator<Player> it = copyList.iterator();
-    String teamList = "";
+    StringBuilder teamList = new StringBuilder();
     while (it.hasNext()) {
       Player currPlayer = it.next();
-      teamList += "Name: " + currPlayer.getLastName() + ", " + currPlayer.getFirstName() + "; Jersey Number: " + String.valueOf(currPlayer.getJerseyNumber()) + "\n";
+      teamList.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(String.valueOf(currPlayer.getJerseyNumber())).append("\n");
+//      teamList += "Name: " + currPlayer.getLastName() + ", " + currPlayer.getFirstName() + "; Jersey Number: " + String.valueOf(currPlayer.getJerseyNumber()) + "\n";
     }
-    return teamList;
+    return teamList.toString();
   }
 
   /**
@@ -223,11 +224,11 @@ public class BritishColumbiaFootballTeam implements Team {
     });
 
     Iterator<Player> it = copyList.iterator();
-    String lineup = "";
+    StringBuilder lineup = new StringBuilder();
     while (it.hasNext()) {
       Player currPlayer = it.next();
-      lineup += "Name: " + currPlayer.getLastName() + ", " + currPlayer.getFirstName() + "; Jersey Number: " + String.valueOf(currPlayer.getJerseyNumber()) + "; Position: " + currPlayer.getAssignedPosition().toString() + "\n";
+      lineup.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(String.valueOf(currPlayer.getJerseyNumber())).append("; Position: ").append(currPlayer.getAssignedPosition().toString()).append("\n");
     }
-    return lineup;
+    return lineup.toString();
   }
 }
