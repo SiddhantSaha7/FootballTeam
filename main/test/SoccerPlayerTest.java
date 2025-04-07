@@ -17,15 +17,6 @@ public class SoccerPlayerTest {
         player = new SoccerPlayer("John", "Doe", testDate, testPosition, 5);
     }
 
-    @Test
-    public void testBasicConstructor() {
-        SoccerPlayer basicPlayer = new SoccerPlayer("Jane", "Smith", testDate);
-        assertEquals("Jane", basicPlayer.getFirstName());
-        assertEquals("Smith", basicPlayer.getLastName());
-        assertEquals(testDate, basicPlayer.getDOB());
-        assertNull(basicPlayer.getPreferredPosition());
-        assertEquals(0, basicPlayer.getSkillLevel());
-    }
 
     @Test
     public void testPositionConstructor() {
@@ -88,7 +79,7 @@ public class SoccerPlayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testExceptionCaseNullNames() {
-        SoccerPlayer nullNamePlayer = new SoccerPlayer(null, null, testDate);
+        SoccerPlayer nullNamePlayer = new SoccerPlayer(null, null, testDate, Position.GOALIE);
 
     }
 
@@ -100,6 +91,6 @@ public class SoccerPlayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testExceptionOlderPlayer() {
-        SoccerPlayer nullDatePlayer = new SoccerPlayer("Test", "Player", LocalDate.of(2014, 4, 4));
+        SoccerPlayer nullDatePlayer = new SoccerPlayer("Test", "Player", LocalDate.of(2014, 4, 4), Position.GOALIE);
     }
 }
