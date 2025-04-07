@@ -39,25 +39,6 @@ public class SoccerPlayer implements Player {
     private Position assignedPosition;
 
     /**
-     * Creates a SoccerPlayer with basic information.
-     *
-     * @param firstName The player's first name
-     * @param lastName  The player's last name
-     * @param DOB       The player's date of birth
-     */
-    public SoccerPlayer(String firstName, String lastName, LocalDate DOB) throws IllegalArgumentException{
-        if (firstName == null || lastName == null || firstName.length()==0 || lastName.length()==0) {
-            throw new IllegalArgumentException("The firstname and lastname should not be empty or null");
-        }
-        else if (isPlayerTooOld(DOB)){
-            throw new IllegalArgumentException("Player is too old!");
-        }
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = DOB;
-    }
-
-    /**
      * Creates a SoccerPlayer with basic information and preferred position.
      *
      * @param firstName         The player's first name
