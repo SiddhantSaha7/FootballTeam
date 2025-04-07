@@ -214,16 +214,18 @@ public class BritishColumbiaFootballTeamTest {
 
     /**
      * Tests constructing a team with more than 20 players.
-     * Expects an IllegalArgumentException to be thrown.
+     * Expects the lowest ranked player to be trimmed
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void constructorWithTooManyPlayers() {
         List<Player> tooMany = new ArrayList<>();
         for (int i = 0; i < 21; i++) {
             tooMany.add(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
         }
-        new BritishColumbiaFootballTeam(tooMany);
+        Team newTeam = new BritishColumbiaFootballTeam(tooMany);
+        assertEquals(20, newTeam.getAllPlayersSorted().split("\n").length);
     }
+
 
     /**
      * Helper method to count occurrences of a substring in a text.

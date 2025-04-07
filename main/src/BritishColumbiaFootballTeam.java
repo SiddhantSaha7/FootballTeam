@@ -34,7 +34,17 @@ public class BritishColumbiaFootballTeam implements Team {
    * @throws IllegalArgumentException if size invalid (>20 or <10)
    */
   public BritishColumbiaFootballTeam(List<Player> players) throws IllegalArgumentException {
-    if (players.size() > 20 || players.size() < 10) {
+    if (players.size()>20){
+      Collections.sort(players, new Comparator<Player>() {
+        @Override
+        public int compare(Player p1, final Player p2) {
+          return -1 * (Integer.valueOf(p1.getSkillLevel()).compareTo(Integer.valueOf(p2.getSkillLevel())));
+        }
+      });
+      players = players.subList(0, 20);
+      ;
+    }
+    if (players.size() < 10) {
       throw new IllegalArgumentException("Team size should be between 10-20 players!");
     }
     this.players = new ArrayList<>(players);
