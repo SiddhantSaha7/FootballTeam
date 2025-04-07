@@ -1,7 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
 
 /**
  * Demonstrates usage of soccer team classes.

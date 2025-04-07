@@ -1,8 +1,5 @@
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Concrete implementation of a soccer player.
