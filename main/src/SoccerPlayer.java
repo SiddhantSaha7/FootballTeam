@@ -26,10 +26,10 @@ public class SoccerPlayer implements Player {
      * The player's skill level (higher is better)
      */
     private int skillLevel;
-    /**
-     * The player's jersey number, set to default 0 and handled once he is assigned to a team
-     */
-    private int jerseyNumber=0;
+//    /**
+//     * The player's jersey number, set to default 0 and handled once he is assigned to a team
+//     */
+//    private int jerseyNumber=0;
     /**
      * The player's assigned Position in the squad/team
      */
@@ -192,27 +192,27 @@ public class SoccerPlayer implements Player {
         this.skillLevel = skillLevel;
     }
 
-    /**
-     * Gets the player's jersey number.
-     * @return the jersey number
-     */
-    @Override
-    public int getJerseyNumber() {
-        return this.jerseyNumber;
-    }
+//    /**
+//     * Gets the player's jersey number.
+//     * @return the jersey number
+//     */
+//    @Override
+//    public int getJerseyNumber() {
+//        return this.jerseyNumber;
+//    }
 
-    /**
-     * Sets the player's jersey number.
-     * @param jerseyNumber the jersey number to set
-     */
-    @Override
-    public void setJerseyNumber(int jerseyNumber, Team team) throws IllegalArgumentException{
-        if (team instanceof Team) {
-            this.jerseyNumber = jerseyNumber;
-        } else {
-            throw new IllegalArgumentException("Jersey number can only be assigned by a team!");
-        }
-    }
+//    /**
+//     * Sets the player's jersey number.
+//     * @param jerseyNumber the jersey number to set
+//     */
+//    @Override
+//    public void setJerseyNumber(int jerseyNumber, Team team) throws IllegalArgumentException{
+//        if (team instanceof Team) {
+//            this.jerseyNumber = jerseyNumber;
+//        } else {
+//            throw new IllegalArgumentException("Jersey number can only be assigned by a team!");
+//        }
+//    }
 
     /** Method to check if a player is >10 years old
      *

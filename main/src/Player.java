@@ -61,16 +61,15 @@ import java.time.LocalDate;
      * @param skillLevel int representing skill level (higher is better)
      */
      void setSkillLevel(int skillLevel);
-    /**
-     * Gets the player's jersey number.
-     * @return jerseyNumber int representing jersey Number
-     */
-     int getJerseyNumber();
-    /**
-     * Sets the player's jersey number.
-     * @param jerseyNumber int representing jersey Number, its value will lie between 1-20
-     */
-     void setJerseyNumber(int jerseyNumber, Team team);
-
+//    /**
+//     * Gets the player's jersey number.
+//     * @return jerseyNumber int representing jersey Number
+//     */
+//     int getJerseyNumber();
+//    /**
+//     * Sets the player's jersey number.
+//     * @param jerseyNumber int representing jersey Number, its value will lie between 1-20
+//     */
+//     void setJerseyNumber(int jerseyNumber, Team team);
     
 }
