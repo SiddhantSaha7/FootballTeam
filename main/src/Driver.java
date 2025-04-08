@@ -1,7 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
 
 /**
  * Demonstrates usage of soccer team classes.
@@ -34,6 +32,7 @@ public class Driver {
         Player p18 = new SoccerPlayer("Elijah", "Gupta", LocalDate.of(2017, 2, 28), Position.DEFENDER, 4);
         Player p19 = new SoccerPlayer("Harper", "Silva", LocalDate.of(2019, 7, 11), Position.FORWARD, 2);
         Player p20 = new SoccerPlayer("Alexander", "Yama", LocalDate.of(2017, 9, 3), Position.MIDFIELDER, 5);
+        Player p21 = new SoccerPlayer("Alexander", "Skaarsgard", LocalDate.of(2016, 9, 3), Position.DEFENDER, 1);
 
         ArrayList<Player> a = new ArrayList<>();
         a.add(p1);
@@ -56,7 +55,7 @@ public class Driver {
         a.add(p18);
         a.add(p19);
         a.add(p20);
-
+        a.add(p21);
         // Testing creation of team
         BritishColumbiaFootballTeam team = new BritishColumbiaFootballTeam(a);
         // Testing getting all the players in the team
@@ -71,8 +70,7 @@ public class Driver {
         team.removePlayer(p1);
         team.removePlayer(p8);
         team.removePlayer(p16);
-        Player p21 = new SoccerPlayer("Alexander", "Skaarsgard", LocalDate.of(2016, 9, 3), Position.DEFENDER, 1);
-        team.addPlayer(p21);
+
         System.out.println(team.getAllPlayersSorted());
         System.out.println(team.getStartingLineup());
     }

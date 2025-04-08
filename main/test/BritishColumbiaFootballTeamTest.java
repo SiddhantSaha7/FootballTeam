@@ -32,7 +32,7 @@ public class BritishColumbiaFootballTeamTest {
      */
     @Test
     public void addPlayer() {
-        Player newPlayer = new SoccerPlayer("New", "Player", LocalDate.of(2016, 2, 2));
+        Player newPlayer = new SoccerPlayer("New", "Player", LocalDate.of(2016, 2, 2), Position.GOALIE);
         team.addPlayer(newPlayer);
         assertEquals(20, team.getAllPlayersSorted().split("\n").length);
     }
@@ -45,9 +45,9 @@ public class BritishColumbiaFootballTeamTest {
     public void addPlayerToFullTeam() {
         BritishColumbiaFootballTeam fullTeam = new BritishColumbiaFootballTeam();
         for (int i = 0; i < 20; i++) {
-            fullTeam.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
+            fullTeam.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.DEFENDER));
         }
-        fullTeam.addPlayer(new SoccerPlayer("Extra", "Player", LocalDate.of(2016, 1, 1)));
+        fullTeam.addPlayer(new SoccerPlayer("Extra", "Player", LocalDate.of(2016, 1, 1), Position.MIDFIELDER));
     }
 
     /**
@@ -82,7 +82,7 @@ public class BritishColumbiaFootballTeamTest {
     public void assignJerseyNumber() {
         BritishColumbiaFootballTeam fullTeam = new BritishColumbiaFootballTeam();
         for (int i = 0; i < 20; i++) {
-            fullTeam.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
+            fullTeam.addPlayer(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.values()[i % 4]));
         }
         String players = fullTeam.getAllPlayersSorted();
         String[] playerLines = players.split("\n");
@@ -207,23 +207,25 @@ public class BritishColumbiaFootballTeamTest {
     public void constructorWithTooFewPlayers() {
         List<Player> tooFew = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
-            tooFew.add(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
+            tooFew.add(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.values()[i % 4]));
         }
         new BritishColumbiaFootballTeam(tooFew);
     }
 
     /**
      * Tests constructing a team with more than 20 players.
-     * Expects an IllegalArgumentException to be thrown.
+     * Expects the lowest ranked player to be trimmed
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void constructorWithTooManyPlayers() {
         List<Player> tooMany = new ArrayList<>();
         for (int i = 0; i < 21; i++) {
-            tooMany.add(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1)));
+            tooMany.add(new SoccerPlayer("F" + i, "L" + i, LocalDate.of(2016, 1, 1), Position.values()[i % 4]));
         }
-        new BritishColumbiaFootballTeam(tooMany);
+        Team newTeam = new BritishColumbiaFootballTeam(tooMany);
+        assertEquals(20, newTeam.getAllPlayersSorted().split("\n").length);
     }
+
 
     /**
      * Helper method to count occurrences of a substring in a text.
