@@ -15,7 +15,7 @@ public class BritishColumbiaFootballTeam implements Team {
     /**
      * Assigned jersey numbers
      */
-    private Set<Integer> assignedJerseyNumbers;
+    private Map<Player, Integer> assignedJerseyNumbers;
 
     /**
      * Max team size
@@ -36,7 +36,7 @@ public class BritishColumbiaFootballTeam implements Team {
     public BritishColumbiaFootballTeam() {
         this.players = new ArrayList<>();
         this.startingLineup = new ArrayList<>();
-        this.assignedJerseyNumbers = new HashSet<>();
+        this.assignedJerseyNumbers = new HashMap<>();
     }
 
     /**
@@ -62,7 +62,7 @@ public class BritishColumbiaFootballTeam implements Team {
         }
         this.players = new ArrayList<>(players);
         this.startingLineup = new ArrayList<>();
-        this.assignedJerseyNumbers = new HashSet<>();
+        this.assignedJerseyNumbers = new HashMap<>();
         // assign jersey numbers to all the players
         this.assignJerseyNumber();
     }
@@ -100,7 +100,7 @@ public class BritishColumbiaFootballTeam implements Team {
         }
         this.players.remove(p);
         // Remove the jersey number of the player
-        this.assignedJerseyNumbers.remove(p.getJerseyNumber());
+        this.assignedJerseyNumbers.remove(p);
         // Remove from starting lineup if player is a part of it and then recreate starting lineup
         if (this.startingLineup.contains(p)) {
             this.startingLineup.remove(p);
@@ -113,19 +113,16 @@ public class BritishColumbiaFootballTeam implements Team {
      */
     @Override
     public void assignJerseyNumber() {
-        int teamSize = this.players.size();
-        int i = 0;
-        while (teamSize != i) {
-            if (this.players.get(i).getJerseyNumber() != 0) {
-                i++;
+        for (Player p: this.players) {
+
+            if (this.assignedJerseyNumbers.containsKey(p)) {
                 continue;
             }
             int jerseyNum = (int) ((Math.random() * 20) + 1);
-            if (!assignedJerseyNumbers.contains(jerseyNum)) {
-                this.players.get(i).setJerseyNumber(jerseyNum, this);
-                assignedJerseyNumbers.add(jerseyNum);
-                i++;
+            while (this.assignedJerseyNumbers.containsValue(jerseyNum)) {
+                jerseyNum = (int) ((Math.random() * 20) + 1);
             }
+            this.assignedJerseyNumbers.put(p, jerseyNum);
         }
     }
 
@@ -218,7 +215,7 @@ public class BritishColumbiaFootballTeam implements Team {
         });
         StringBuilder teamList = new StringBuilder();
         for (Player currPlayer: copyList) {
-            teamList.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(String.valueOf(currPlayer.getJerseyNumber())).append("\n");
+            teamList.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(this.assignedJerseyNumbers.get(currPlayer)).append("\n");
         }
         return teamList.toString();
     }
@@ -245,7 +242,7 @@ public class BritishColumbiaFootballTeam implements Team {
 
         StringBuilder lineup = new StringBuilder();
         for (Player currPlayer: copyList) {
-            lineup.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(String.valueOf(currPlayer.getJerseyNumber())).append("; Position: ").append(currPlayer.getAssignedPosition().toString()).append("\n");
+            lineup.append("Name: ").append(currPlayer.getLastName()).append(", ").append(currPlayer.getFirstName()).append("; Jersey Number: ").append(this.assignedJerseyNumbers.get(currPlayer)).append("; Position: ").append(currPlayer.getAssignedPosition().toString()).append("\n");
         }
         return lineup.toString();
     }
