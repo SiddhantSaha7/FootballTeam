@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Defines the core functionality for managing a soccer team in the British Columbia Soccer Club's U10 program.
  * This interface outlines methods for adding and removing players, assigning jersey numbers, creating a starting lineup,

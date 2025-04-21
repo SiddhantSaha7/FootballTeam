@@ -1,3 +1,5 @@
+package model;
+
 /** Team positions */
 public enum Position {
     /** Goalkeeper */
