@@ -14,12 +14,10 @@ public class SoccerTeamDriver {
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-        // Launch the application using Swing's event dispatch thread
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Initialize the application by creating the controller
-                // The controller will handle creating and setting up the view
+
                 initializeApplication();
             }
         });

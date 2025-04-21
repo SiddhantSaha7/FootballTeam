@@ -1,6 +1,5 @@
-import model.Player;
-import model.Position;
-import model.SoccerPlayer;
+package model;
+
 import org.junit.Before;
 import org.junit.Test;
 
