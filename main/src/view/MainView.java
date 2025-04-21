@@ -101,23 +101,6 @@ public class MainView extends JFrame implements IMainView{
     }
 
     /**
-     * Attempts to get player input from the form.
-     *
-     * @return The player object if valid, null otherwise
-     */
-    public Player getPlayerInput() {
-        try {
-            return playerFormView.getPlayerInput();
-        } catch (IllegalArgumentException e) {
-            showMessage("Error: " + e.getMessage());
-            return null;
-        } catch (DateTimeParseException e) {
-            showMessage("Invalid date format. Please use YYYY-MM-DD.");
-            return null;
-        }
-    }
-
-    /**
      * Gets form data from the input view.
      *
      * @return PlayerFormData or null

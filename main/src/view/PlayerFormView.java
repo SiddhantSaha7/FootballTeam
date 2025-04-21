@@ -58,27 +58,6 @@ public class PlayerFormView extends JPanel implements IPlayerFormView{
     }
     
     /**
-     * Gets input from the player form to create a new player.
-     * @return A new Player object, or null if inputs are invalid
-     * @throws IllegalArgumentException if player data is invalid
-     * @throws DateTimeParseException if date format is invalid
-     */
-    public Player getPlayerInput() throws IllegalArgumentException, DateTimeParseException {
-        String firstName = firstNameField.getText().trim();
-        String lastName = lastNameField.getText().trim();
-        String dobString = dobField.getText().trim();
-        Position position = (Position) positionComboBox.getSelectedItem();
-        int skillLevel = (Integer) skillLevelComboBox.getSelectedItem();
-        
-        // Parse date of birth
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate dob = LocalDate.parse(dobString, formatter);
-        
-        // Create player
-        return new SoccerPlayer(firstName, lastName, dob, position, skillLevel);
-    }
-    
-    /**
      * Clears the player input form.
      */
     public void clearForm() {
